@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Space Grotesk", sans-serif;
+
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-card: var(--bg-card);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-socle: var(--socle);
+  --color-direction: var(--direction);
+  --color-prompt: var(--prompt);
+  --color-formation: var(--formation);
+}
+
+:root {
+  --bg: #faf3e8;
+  --bg-elevated: #f1e4cf;
+  --bg-card: #ffffff;
+  --border: #e2d2b6;
+  --text: #2e2013;
+  --text-dim: #8a7660;
+  --socle: #b8622a;
+  --direction: #c1462f;
+  --prompt: #6f8a3a;
+  --formation: #b8860b;
+
+  --bar-bg: #ecdcc0;
+  --grid-line: rgba(184, 98, 42, 0.06);
+  --terminal-glow: rgba(184, 98, 42, 0.08);
+  --card-glow-hover: rgba(184, 98, 42, 0.1);
+  --tag-bg: rgba(184, 98, 42, 0.1);
+  --tag-border: rgba(184, 98, 42, 0.3);
+  --formation-tag-bg: rgba(184, 134, 11, 0.12);
+  --formation-tag-border: rgba(184, 134, 11, 0.35);
+  --today-glow: rgba(193, 70, 47, 0.35);
+  --today-tag-bg: rgba(193, 70, 47, 0.1);
+  --today-tag-border: rgba(193, 70, 47, 0.3);
+  --nav-bg: rgba(250, 243, 232, 0.85);
+}
+
+[data-theme="dark"] {
+  --bg: #1b140f;
+  --bg-elevated: #241b14;
+  --bg-card: #2a1f17;
+  --border: #3d2e22;
+  --text: #ecdfd0;
+  --text-dim: #a4907a;
+  --socle: #e3a75a;
+  --direction: #e2664a;
+  --prompt: #b7c98a;
+  --formation: #f0b429;
+
+  --bar-bg: #1f1710;
+  --grid-line: rgba(227, 167, 90, 0.05);
+  --terminal-glow: rgba(227, 167, 90, 0.06);
+  --card-glow-hover: rgba(227, 167, 90, 0.1);
+  --tag-bg: rgba(227, 167, 90, 0.12);
+  --tag-border: rgba(227, 167, 90, 0.3);
+  --formation-tag-bg: rgba(240, 180, 41, 0.12);
+  --formation-tag-border: rgba(240, 180, 41, 0.35);
+  --today-glow: rgba(226, 102, 74, 0.5);
+  --today-tag-bg: rgba(226, 102, 74, 0.12);
+  --today-tag-border: rgba(226, 102, 74, 0.35);
+  --nav-bg: rgba(27, 20, 15, 0.85);
+}
+
+html {
+  transition: background-color 0.25s ease;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+::selection {
+  background: var(--socle);
+  color: #000;
+}
+
+/* scanline / grid backdrop */
+.bg-grid::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 42px 42px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.badge-dot::before {
+  content: "●";
+  font-size: 0.6rem;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+.terminal-glow {
+  box-shadow: 0 0 40px var(--terminal-glow);
+}
+
+.card-glow-hover:hover {
+  box-shadow: 0 0 24px var(--card-glow-hover);
+}
+
+/* git log timeline rail */
+.gitlog::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+
+.commit-dot {
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--socle);
+  z-index: 1;
+}
+
+.commit-dot.formation {
+  border-color: var(--formation);
+}
+
+.commit-dot.today {
+  border-color: var(--direction);
+  box-shadow: 0 0 10px var(--today-glow);
+}
+
+.tag {
+  background: var(--tag-bg);
+  color: var(--socle);
+  border: 1px solid var(--tag-border);
+}
+
+.tag-formation {
+  background: var(--formation-tag-bg);
+  color: var(--formation);
+  border: 1px solid var(--formation-tag-border);
+}
+
+.tag-today {
+  background: var(--today-tag-bg);
+  color: var(--direction);
+  border: 1px solid var(--today-tag-border);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--socle);
+}
