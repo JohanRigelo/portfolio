@@ -35,3 +35,7 @@ src/
 ## Historique des décisions
 
 Le détail complet (contexte, positionnement, choix visuels/techniques, reste à faire) est tenu à jour dans **`DECISIONS.md`** — à lire avant de reprendre ce projet, et à mettre à jour à chaque décision importante.
+
+## Convention de mise à jour des docs
+
+Avant de committer un changement significatif (décision, nouvelle fonctionnalité, choix technique, bug important trouvé/contourné), mettre à jour `DECISIONS.md` (et ce `CLAUDE.md` si la structure/stack change) **dans le même commit**. Un hook `pre-commit` local (non bloquant, non versionné) affiche un rappel à chaque commit.
