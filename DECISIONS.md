@@ -55,9 +55,15 @@ portfolio/
 
 Les couleurs du mockup ont été renommées de façon sémantique (`--cyan` → `--socle`, `--pink` → `--direction`, `--green` → `--prompt`, `--amber` → `--formation`) pour que le code reflète le sens donné par Johan aux couleurs, plutôt que les noms de la maquette.
 
+## Déploiement
+
+- Repo GitHub : `github.com/JohanRigelo/portfolio` (remote HTTPS, auth via `gh auth login`)
+- Déployé sur Vercel, projet `johanrigelos-projects/portfolio`, lié au repo GitHub pour un redéploiement automatique à chaque push sur `main`
+- URL de production : https://portfolio-phi-ochre-s46pa4qab7.vercel.app
+
 ## Reste à faire
 
 - Remplacer le mailto par un vrai formulaire de contact si souhaité (email confirmé : `j.rigelo@gmail.com`)
 - Ajouter les vrais liens GitHub/démo par projet
 - Approfondir le responsive mobile (un menu hamburger n'a pas été implémenté — actuellement les liens de nav sont juste masqués sous 640px pour éviter le débordement horizontal constaté)
-- Init Git, push GitHub, déployer sur Vercel (détection auto de Vite) — **en cours**
+- Éventuellement configurer un nom de domaine personnalisé sur Vercel
