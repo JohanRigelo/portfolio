@@ -10,9 +10,10 @@ export const projects = [
   },
   {
     title: "Calculatrice Métabolisme",
-    description: "Outil de calcul du métabolisme de base.",
+    description:
+      "Calcul des besoins caloriques et de l'IMC selon l'objectif (prise de masse / perte de poids), avec suggestions de recettes.",
     stack: "React · Vite",
-    github: null,
-    demo: null,
+    github: "https://github.com/JohanRigelo/calculatrice-metabolisme",
+    demo: "https://calculatrice-metabolisme.vercel.app",
   },
 ];
