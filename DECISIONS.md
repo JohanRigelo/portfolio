@@ -59,7 +59,9 @@ Les couleurs du mockup ont été renommées de façon sémantique (`--cyan` → 
 
 - Repo GitHub : `github.com/JohanRigelo/portfolio` (remote HTTPS, auth via `gh auth login`)
 - Déployé sur Vercel, projet `johanrigelos-projects/portfolio`, lié au repo GitHub pour un redéploiement automatique à chaque push sur `main`
-- URL de production : https://portfolio-phi-ochre-s46pa4qab7.vercel.app
+- URL de production (alias .vercel.app personnalisé) : **https://johan-rigelo.vercel.app**
+- URL générée automatiquement par Vercel (toujours valide) : https://portfolio-phi-ochre-s46pa4qab7.vercel.app
+- La protection "Vercel Authentication" (SSO), activée par défaut sur les sous-domaines `.vercel.app`, a été désactivée (`ssoProtection: null` via l'API projet) pour que le portfolio soit consultable publiquement sans compte Vercel
 
 ## Reste à faire
 
