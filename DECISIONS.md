@@ -36,11 +36,12 @@ Hero (terminal animé + accroche) → Timeline parcours (git log) → Compétenc
 
 ## Projets mis en avant
 
-1. **Bibliothèque de chants** (React/Vite/Tailwind) — projet principal, mis en avant visuellement (badge "PROJET PRINCIPAL")
-2. **Annonces-immo** — CRUD immobilier, MERN/Angular
-3. **Calculatrice métabolisme** — React/Vite
+1. **Bibliothèque de chants** (React/Vite/Tailwind) — projet principal, mis en avant visuellement (badge "PROJET PRINCIPAL"). Liens réels ajoutés : GitHub `github.com/JohanRigelo/Bibliotheque_De_Chants`, démo `bibliotheque-de-chants.vercel.app`
+2. **Calculatrice métabolisme** — React/Vite. Projet local complet (React + Express) mais jamais poussé sur GitHub ni déployé — liens encore `null`, à faire
 
-Les liens GitHub/démo sont pour l'instant `null` dans `src/data/projects.js` (pas encore ajoutés) — le composant `Projects.jsx` n'affiche la ligne de liens que si l'un des deux est renseigné.
+**Annonces-immo a été retiré du portfolio** (décision du 2026-07-28) : investigation des dossiers candidats (`Projet Test\annonces-immo`, `annonces-immo-updated\annonces-immo`) a montré qu'aucune version n'a de backend fonctionnel (front React seul, malgré la description "CRUD MERN/Angular"), et l'historique Git de la version "updated" est pollué (node_modules committé). Le backend existe peut-être dans les archives non extraites `annonces-immo-updated.tar.gz` / `annonces-immo.rar` à la racine de `DevProject`. À reconsidérer si le backend est un jour retrouvé/reconstruit — sinon laisser de côté plutôt que montrer un projet incomplet, cohérent avec le positionnement honnête du site.
+
+Les liens GitHub/démo restent `null` par défaut dans `src/data/projects.js` tant qu'un projet n'est pas prêt — le composant `Projects.jsx` n'affiche la ligne de liens que si l'un des deux est renseigné.
 
 ## Architecture du code React
 
