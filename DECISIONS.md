@@ -64,9 +64,14 @@ Les couleurs du mockup ont été renommées de façon sémantique (`--cyan` → 
 - URL générée automatiquement par Vercel (toujours valide) : https://portfolio-phi-ochre-s46pa4qab7.vercel.app
 - La protection "Vercel Authentication" (SSO), activée par défaut sur les sous-domaines `.vercel.app`, a été désactivée (`ssoProtection: null` via l'API projet) pour que le portfolio soit consultable publiquement sans compte Vercel
 
+## SEO et identité de la page (`index.html`)
+
+- `<title>` mis à jour pour refléter le positionnement réel : "Johan Rigelo — Automatisation & IA | Bases en développement web" (remplace l'ancien "Johan Rigelo — Développeur Web", trop générique/dev confirmé)
+- `<meta name="description">` ajoutée (résume reconversion automatisation/IA + bases techniques + recherche formation/alternance)
+- Favicon remplacé : l'ancien était le logo violet générique d'un template de départ, sans rapport avec le site. Nouveau favicon : monogramme "JR" en SVG, fond ambre "socle" (`#b8622a`) / lettres crème en mode clair, qui bascule en fond sombre / lettres ambre clair via `@media (prefers-color-scheme: dark)` — répond à la préférence système, indépendamment du toggle jour/nuit de l'app (les favicons ne peuvent pas lire l'état React de la page)
+
 ## Reste à faire
 
-- Remplacer le mailto par un vrai formulaire de contact si souhaité (email confirmé : `j.rigelo@gmail.com`)
-- Ajouter les vrais liens GitHub/démo par projet
+- Remplacer le mailto (`j.rigelo@gmail.com`) par un vrai formulaire de contact si souhaité — déjà fonctionnel tel quel
 - Approfondir le responsive mobile (un menu hamburger n'a pas été implémenté — actuellement les liens de nav sont juste masqués sous 640px pour éviter le débordement horizontal constaté)
 - Éventuellement configurer un nom de domaine personnalisé sur Vercel
