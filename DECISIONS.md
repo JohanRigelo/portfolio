@@ -76,7 +76,9 @@ Symptôme rapporté par Johan : après un clic sur un lien de la nav (ex. "proje
 
 Diagnostic : non reproductible via tests automatisés (Playwright, Chromium/Firefox/WebKit desktop — 5+ séquences de clics différentes, toujours fonctionnel, aucune erreur console). Confirmé par Johan que le scroll à la molette continue de fonctionner pendant le blocage — seule la nav est touchée. Cause probable : bug de compositing GPU connu sur Chrome, où un élément `position: sticky` combiné à `backdrop-filter` (le flou de la nav) perd sa capacité à recevoir les événements de clic après le repaint déclenché par le scroll (le hash dans l'URL n'est que la trace de ce scroll, pas la cause).
 
-**Fix appliqué** : ajout de `will-change-transform` et `transform: translateZ(0)` sur la nav (`Nav.jsx`) pour forcer sa promotion sur une couche de compositing GPU stable, sans retirer le flou d'arrière-plan. À confirmer par Johan en conditions réelles (Chrome desktop) après redéploiement — si le bug persiste, solution de repli : retirer `backdrop-blur` de la nav.
+**Premier essai (échec, annulé)** : ajout de `will-change-transform` + `transform: translateZ(0)` sur la nav pour forcer sa promotion sur une couche de compositing GPU stable. Résultat : nouvelle régression — la nav restait visuellement collée en haut (sticky OK visuellement), mais ne devenait cliquable qu'en remontant tout en haut de la page. `transform`/`will-change: transform` sur un élément `position: sticky` peut désynchroniser la zone de hit-test (clics) de sa position peinte à l'écran — à éviter sur un élément sticky.
+
+**Fix retenu** : suppression de `backdrop-blur-[8px]` sur la nav (`Nav.jsx`) — la nav garde son fond semi-transparent (`--nav-bg`, rgba) mais sans flou. Élimine la dépendance à une couche de compositing GPU pour l'effet visuel, donc plus de risque de ce type de bug. Petit changement visuel (fond translucide net au lieu de flouté). À confirmer par Johan en conditions réelles (Chrome desktop) après redéploiement.
 
 ## Reste à faire
 
