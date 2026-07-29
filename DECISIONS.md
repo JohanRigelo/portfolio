@@ -70,8 +70,17 @@ Les couleurs du mockup ont été renommées de façon sémantique (`--cyan` → 
 - `<meta name="description">` ajoutée (résume reconversion automatisation/IA + bases techniques + recherche formation/alternance)
 - Favicon remplacé : l'ancien était le logo violet générique d'un template de départ, sans rapport avec le site. Nouveau favicon : monogramme "JR" en SVG, fond ambre "socle" (`#b8622a`) / lettres crème en mode clair, qui bascule en fond sombre / lettres ambre clair via `@media (prefers-color-scheme: dark)` — répond à la préférence système, indépendamment du toggle jour/nuit de l'app (les favicons ne peuvent pas lire l'état React de la page)
 
+## Bug corrigé — nav bloquée après un clic (Chrome desktop)
+
+Symptôme rapporté par Johan : après un clic sur un lien de la nav (ex. "projets"), l'URL prend le hash correspondant (`#projets`) et **plus aucun autre lien de la nav n'est cliquable** tant que ce hash reste dans l'URL — il faut retirer le hash et recharger la page pour que la nav redevienne cliquable.
+
+Diagnostic : non reproductible via tests automatisés (Playwright, Chromium/Firefox/WebKit desktop — 5+ séquences de clics différentes, toujours fonctionnel, aucune erreur console). Confirmé par Johan que le scroll à la molette continue de fonctionner pendant le blocage — seule la nav est touchée. Cause probable : bug de compositing GPU connu sur Chrome, où un élément `position: sticky` combiné à `backdrop-filter` (le flou de la nav) perd sa capacité à recevoir les événements de clic après le repaint déclenché par le scroll (le hash dans l'URL n'est que la trace de ce scroll, pas la cause).
+
+**Fix appliqué** : ajout de `will-change-transform` et `transform: translateZ(0)` sur la nav (`Nav.jsx`) pour forcer sa promotion sur une couche de compositing GPU stable, sans retirer le flou d'arrière-plan. À confirmer par Johan en conditions réelles (Chrome desktop) après redéploiement — si le bug persiste, solution de repli : retirer `backdrop-blur` de la nav.
+
 ## Reste à faire
 
+- Confirmer que le fix de la nav (ci-dessus) résout bien le problème en conditions réelles
 - Remplacer le mailto (`j.rigelo@gmail.com`) par un vrai formulaire de contact si souhaité — déjà fonctionnel tel quel
 - Approfondir le responsive mobile (un menu hamburger n'a pas été implémenté — actuellement les liens de nav sont juste masqués sous 640px pour éviter le débordement horizontal constaté)
 - Éventuellement configurer un nom de domaine personnalisé sur Vercel

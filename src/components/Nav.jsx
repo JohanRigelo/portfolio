@@ -7,7 +7,7 @@ export default function Nav({ theme, toggleTheme }) {
   ];
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-[var(--nav-bg)] px-[6%] py-[18px] backdrop-blur-[8px]">
+    <nav className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-[var(--nav-bg)] px-[6%] py-[18px] backdrop-blur-[8px] will-change-transform [transform:translateZ(0)]">
       <div className="font-mono font-bold tracking-wide text-socle">
         johan<span className="text-direction">@</span>portfolio
       </div>
