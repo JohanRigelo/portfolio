@@ -16,4 +16,12 @@ export const projects = [
     github: "https://github.com/JohanRigelo/calculatrice-metabolisme",
     demo: "https://calculatrice-metabolisme.vercel.app",
   },
+  {
+    title: "Annonces Immo",
+    description:
+      "Gestion d'annonces immobilières : CRUD avec photos, recherche/filtres (prix, surface, ville), authentification et rôles auteur/admin.",
+    stack: "React · Vite · Firebase · Tailwind",
+    github: "https://github.com/JohanRigelo/Annonces_Immo",
+    demo: "https://annonces-immo.vercel.app",
+  },
 ];

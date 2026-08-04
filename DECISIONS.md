@@ -41,6 +41,8 @@ Hero (terminal animé + accroche) → Timeline parcours (git log) → Compétenc
 
 **Annonces-immo a été retiré du portfolio** (décision du 2026-07-28) : investigation des dossiers candidats (`Projet Test\annonces-immo`, `annonces-immo-updated\annonces-immo`) a montré qu'aucune version n'a de backend fonctionnel (front React seul, malgré la description "CRUD MERN/Angular"), et l'historique Git de la version "updated" est pollué (node_modules committé). Le backend existe peut-être dans les archives non extraites `annonces-immo-updated.tar.gz` / `annonces-immo.rar` à la racine de `DevProject`. À reconsidérer si le backend est un jour retrouvé/reconstruit — sinon laisser de côté plutôt que montrer un projet incomplet, cohérent avec le positionnement honnête du site.
 
+3. **Annonces Immo — ré-ajouté au portfolio** (décision du 2026-08-04) : reconstruction from scratch (`annonces-immo-v2`, repo `Annonces_Immo`) avec un vrai backend Firebase (Firestore + Auth), CRUD complet, upload photos (Cloudinary), recherche/filtres, rôles auteur/admin — vérifié fonctionnel avant l'ajout (déployé sur Vercel, testé en ligne : chargement des annonces, navigation/rechargement d'une page de détail). Contrairement à la version listée ci-dessus (retirée en 2026-07-28), celle-ci a un backend qui marche réellement, donc plus de raison de la laisser de côté. Repo GitHub : `github.com/JohanRigelo/Annonces_Immo`. Démo : `annonces-immo.vercel.app`.
+
 Les liens GitHub/démo restent `null` par défaut dans `src/data/projects.js` tant qu'un projet n'est pas prêt — le composant `Projects.jsx` n'affiche la ligne de liens que si l'un des deux est renseigné.
 
 ## Architecture du code React

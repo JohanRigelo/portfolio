@@ -30,7 +30,7 @@ src/
 
 - **Bibliothèque de chants** (projet phare) : repo `github.com/JohanRigelo/Bibliotheque_De_Chants`, démo `bibliotheque-de-chants.vercel.app`
 - **Calculatrice Métabolisme** : repo `github.com/JohanRigelo/calculatrice-metabolisme`, démo `calculatrice-metabolisme.vercel.app`
-- **Annonces Immo n'est volontairement pas listé** : aucune version locale n'a de backend fonctionnel — ne pas l'ajouter sans backend vérifié.
+- **Annonces Immo** : repo `github.com/JohanRigelo/Annonces_Immo`, démo `annonces-immo.vercel.app`. Reconstruction (v2) fonctionnelle avec backend Firebase — ajoutée une fois le déploiement vérifié (l'ancienne version MERN abandonnée n'avait pas de backend fonctionnel, d'où l'absence historique de ce projet ici).
 
 ## Historique des décisions
 
