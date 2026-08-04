@@ -53,6 +53,7 @@ portfolio/
     components/   Nav, Hero, Timeline, Skills, Projects, Footer
     data/          timeline.js, skills.js, projects.js — contenu séparé du rendu
     hooks/          useTheme.js — état + persistance du thème
+                    useReveal.js — détection d'entrée dans le viewport (IntersectionObserver) pour les animations au scroll
     index.css       variables CSS (couleurs light/dark), config Tailwind @theme, classes utilitaires (tags, commit-dot, grille de fond, glow)
 ```
 
@@ -81,6 +82,15 @@ Symptôme rapporté par Johan : après un clic sur un lien de la nav (ex. "proje
 **Cause réelle trouvée** : diagnostic direct avec `document.elementFromPoint(x, y)` aux coordonnées exactes d'un lien de nav, après scroll — révèle qu'un `<div>` de la section actuellement affichée (ex. Skills) est l'élément réellement au sommet à cet endroit, pas le lien. Cause : **toutes les sections (`Timeline`, `Skills`, `Projects`, etc.) ont le même `z-index` (`z-10`) que la nav**. À `z-index` égal, l'ordre de peinture suit l'ordre du DOM — les sections, placées après la nav dans `App.jsx`, passent donc visuellement par-dessus elle dès qu'on scrolle (la nav `sticky` chevauche alors le contenu défilé). La nav restait visible mais ses clics étaient interceptés par la section en dessous. Ce qui explique aussi pourquoi seul un rechargement (qui remet le scroll à 0, sans chevauchement) "réparait" temporairement la nav.
 
 **Fix retenu** : `z-index` de la nav passé de `z-10` à `z-50` (`Nav.jsx`) pour qu'elle reste strictement au-dessus de toutes les sections. Le `backdrop-blur` a été restauré (il n'était pour rien dans le bug). Confirmé par test direct (`elementFromPoint` + clic brut à la position exacte) avant déploiement : le lien de nav redevient bien l'élément cliqué.
+
+## Animations — scroll reveal + entrée Hero (2026-08-05)
+
+Objectif : rendre la page un peu plus dynamique sans en faire un gadget qui nuit à la lisibilité "terminal / git log".
+
+- **`src/hooks/useReveal.js`** : hook générique (`ref`, `isVisible`) basé sur `IntersectionObserver`. Se déclenche une seule fois par élément (`observer.unobserve` après la première intersection, pas de va-et-vient si on remonte/redescend). Si `prefers-reduced-motion: reduce` est actif, `isVisible` passe directement à `true` sans observer — l'utilisateur voit le contenu sans animation plutôt que de dépendre uniquement du CSS.
+- **Classes CSS (`index.css`)** : `.reveal` (état caché : opacité 0 + léger décalage vertical) / `.reveal-visible` (état final, transition 0.6s). Une règle `@media (prefers-reduced-motion: reduce)` neutralise aussi `.reveal` et `.hero-enter` côté CSS, en filet de sécurité si jamais le hook ne s'exécutait pas (SSR, JS désactivé).
+- **Éléments concernés, en cascade** (`transitionDelay` croissant selon l'index, plafonné à 6 crans pour ne pas avoir une attente interminable sur de longues listes) : chaque commit de la `Timeline`, chaque groupe de `Skills`, chaque carte de `Projects`. Ça a demandé d'extraire un sous-composant par item (`CommitItem`, `SkillGroup`, `ProjectCard`) car un Hook ne peut pas être appelé à l'intérieur d'un `.map()` directement — chaque instance de sous-composant a son propre `ref`/`isVisible`.
+- **Hero** : pas de scroll-reveal (il est visible dès l'arrivée sur la page, jamais "hors viewport"). À la place, animation d'entrée au montage (`@keyframes hero-enter`, classe `.hero-enter`) avec un `animationDelay` échelonné entre le bloc terminal, le titre, le paragraphe et le badge, pour un effet de cascade au chargement plutôt qu'un empilement figé.
 
 ## Reste à faire
 

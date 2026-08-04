@@ -16,7 +16,7 @@ Portfolio one-page (React + Vite + Tailwind CSS v4) présentant le parcours et l
 src/
   components/   Nav, Hero, Timeline, Skills, Projects, Footer
   data/         timeline.js, skills.js, projects.js — contenu séparé du rendu
-  hooks/        useTheme.js
+  hooks/        useTheme.js, useReveal.js
   index.css     variables CSS (light/dark), config Tailwind @theme, classes utilitaires
 ```
 
