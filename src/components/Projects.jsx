@@ -1,20 +1,38 @@
 import { projects } from "../data/projects";
 import { useReveal } from "../hooks/useReveal";
 
+// Projets mis en avant : un badge par domaine, aux couleurs du site —
+// « direction » (IA) et « socle » (bases web).
+const MISE_EN_AVANT = {
+  ia: {
+    badge: "PROJET PRINCIPAL · IA",
+    bordure: "border-direction hover:border-direction",
+    fond: "bg-direction",
+  },
+  web: {
+    badge: "PROJET PRINCIPAL · WEB",
+    bordure: "border-socle hover:border-socle",
+    fond: "bg-socle",
+  },
+};
+
 function ProjectCard({ project, index }) {
   const [ref, isVisible] = useReveal();
+  const miseEnAvant = MISE_EN_AVANT[project.featured];
 
   return (
     <div
       ref={ref}
       className={`card-glow-hover reveal relative rounded-[10px] border bg-bg-card p-6.5 transition-all hover:-translate-y-[3px] ${
         isVisible ? "reveal-visible" : ""
-      } ${project.featured ? "border-direction hover:border-direction" : "border-border hover:border-socle"}`}
+      } ${miseEnAvant ? miseEnAvant.bordure : "border-border hover:border-socle"}`}
       style={{ transitionDelay: `${Math.min(index, 6) * 70}ms` }}
     >
-      {project.featured && (
-        <span className="absolute -top-[11px] right-5 rounded font-mono text-[0.65rem] font-bold text-bg bg-direction px-2.5 py-[3px]">
-          PROJET PRINCIPAL
+      {miseEnAvant && (
+        <span
+          className={`absolute -top-[11px] right-5 rounded font-mono text-[0.65rem] font-bold text-bg px-2.5 py-[3px] ${miseEnAvant.fond}`}
+        >
+          {miseEnAvant.badge}
         </span>
       )}
       <h3 className="mb-2 text-[1.15rem] font-semibold">{project.title}</h3>
@@ -29,7 +47,7 @@ function ProjectCard({ project, index }) {
           )}
           {project.demo && (
             <a href={project.demo} className="text-socle hover:underline">
-              démo
+              {project.demoLabel ?? "démo"}
             </a>
           )}
         </div>

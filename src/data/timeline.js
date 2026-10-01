@@ -5,7 +5,7 @@ export const timeline = [
     message: "Cap sur l'automatisation & l'IA",
     tag: "nouveau départ",
     detail:
-      "Peu de connaissances aujourd'hui sur ces sujets, mais une vraie envie d'apprendre et de m'investir en formation ou en alternance.",
+      "Premiers pas concrets : un assistant de candidatures qui utilise une API d'IA (analyse d'offres, CV adapté). Encore beaucoup à apprendre, en formation ou en alternance.",
     variant: "today",
   },
   {

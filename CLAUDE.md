@@ -28,7 +28,8 @@ src/
 
 ## Projets référencés dans `src/data/projects.js`
 
-- **Bibliothèque de chants** (projet phare) : repo `github.com/JohanRigelo/Bibliotheque_De_Chants`, démo `bibliotheque-de-chants.vercel.app`
+- **Workflow candidatures** (projet phare côté IA, badge « PROJET PRINCIPAL · IA ») : dépôt privé (pas de lien code), démo `workflow-candidatures.vercel.app/?demo` (ouvre directement le compte de démonstration)
+- **Bibliothèque de chants** (projet phare côté web, badge « PROJET PRINCIPAL · WEB ») : repo `github.com/JohanRigelo/Bibliotheque_De_Chants`, démo `bibliotheque-de-chants.vercel.app`
 - **Calculatrice Métabolisme** : repo `github.com/JohanRigelo/calculatrice-metabolisme`, démo `calculatrice-metabolisme.vercel.app`
 - **Annonces Immo** : repo `github.com/JohanRigelo/Annonces_Immo`, démo `annonces-immo.vercel.app`. Reconstruction (v2) fonctionnelle avec backend Firebase — ajoutée une fois le déploiement vérifié (l'ancienne version MERN abandonnée n'avait pas de backend fonctionnel, d'où l'absence historique de ce projet ici).
 
