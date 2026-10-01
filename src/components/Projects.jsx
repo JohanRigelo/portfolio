@@ -1,6 +1,10 @@
 import { projects } from "../data/projects";
 import { useReveal } from "../hooks/useReveal";
 
+// Liens « code » / « démo » : ouverts dans un nouvel onglet (le visiteur garde
+// le portfolio ouvert) ; rel="noopener noreferrer" empêche la page ouverte
+// d'agir sur l'onglet du portfolio.
+
 // Projets mis en avant : un badge par domaine, aux couleurs du site —
 // « direction » (IA) et « socle » (bases web).
 const MISE_EN_AVANT = {
@@ -41,12 +45,12 @@ function ProjectCard({ project, index }) {
       {(project.github || project.demo) && (
         <div className="mt-4 flex gap-4 font-mono text-[0.8rem]">
           {project.github && (
-            <a href={project.github} className="text-socle hover:underline">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-socle hover:underline">
               code
             </a>
           )}
           {project.demo && (
-            <a href={project.demo} className="text-socle hover:underline">
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-socle hover:underline">
               {project.demoLabel ?? "démo"}
             </a>
           )}
