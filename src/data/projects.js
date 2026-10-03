@@ -1,7 +1,8 @@
 // featured : projet mis en avant, avec un badge — "ia" (couleur « direction »)
 // ou "web" (couleur « socle »). github / demo : null tant que non disponible
 // (dépôt privé, pas encore en ligne…). demoLabel : texte du lien de démo
-// (« démo » par défaut).
+// (« démo » par défaut). capture (facultatif) : image affichée en haut de la
+// carte, rangée dans public/captures/.
 export const projects = [
   {
     title: "Workflow candidatures",
@@ -12,6 +13,10 @@ export const projects = [
     github: null, // dépôt privé
     demo: "https://workflow-candidatures.vercel.app/?demo",
     demoLabel: "essayer la démo",
+    capture: {
+      src: "/captures/workflow-candidatures.png",
+      alt: "Liste des candidatures de l'appli : relance à faire, entretien programmé, offre reçue",
+    },
   },
   {
     title: "Bibliothèque de chants",

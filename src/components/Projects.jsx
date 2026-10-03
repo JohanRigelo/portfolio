@@ -29,7 +29,11 @@ function ProjectCard({ project, index }) {
       ref={ref}
       className={`card-glow-hover reveal relative rounded-[10px] border bg-bg-card p-6.5 transition-all hover:-translate-y-[3px] ${
         isVisible ? "reveal-visible" : ""
-      } ${miseEnAvant ? miseEnAvant.bordure : "border-border hover:border-socle"}`}
+      } ${miseEnAvant ? miseEnAvant.bordure : "border-border hover:border-socle"} ${
+        // Carte avec capture : toute la largeur de la grille (image à gauche,
+        // texte à droite sur grand écran) pour ne pas étirer ses voisines.
+        project.capture ? "col-span-full md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-center md:gap-8" : ""
+      }`}
       style={{ transitionDelay: `${Math.min(index, 6) * 70}ms` }}
     >
       {miseEnAvant && (
@@ -39,23 +43,35 @@ function ProjectCard({ project, index }) {
           {miseEnAvant.badge}
         </span>
       )}
-      <h3 className="mb-2 text-[1.15rem] font-semibold">{project.title}</h3>
-      <p className="mb-4 text-[0.9rem] text-text-dim">{project.description}</p>
-      <div className="font-mono text-[0.75rem] text-prompt">{project.stack}</div>
-      {(project.github || project.demo) && (
-        <div className="mt-4 flex gap-4 font-mono text-[0.8rem]">
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-socle hover:underline">
-              code
-            </a>
-          )}
-          {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-socle hover:underline">
-              {project.demoLabel ?? "démo"}
-            </a>
-          )}
-        </div>
+      {project.capture && (
+        <img
+          src={project.capture.src}
+          alt={project.capture.alt}
+          loading="lazy"
+          width="1520"
+          height="1720"
+          className="mb-5 aspect-[16/10] w-full rounded-md border border-border object-cover object-top md:mb-0"
+        />
       )}
+      <div>
+        <h3 className="mb-2 text-[1.15rem] font-semibold">{project.title}</h3>
+        <p className="mb-4 text-[0.9rem] text-text-dim">{project.description}</p>
+        <div className="font-mono text-[0.75rem] text-prompt">{project.stack}</div>
+        {(project.github || project.demo) && (
+          <div className="mt-4 flex gap-4 font-mono text-[0.8rem]">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-socle hover:underline">
+                code
+              </a>
+            )}
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-socle hover:underline">
+                {project.demoLabel ?? "démo"}
+              </a>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
