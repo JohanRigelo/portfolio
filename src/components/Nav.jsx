@@ -28,7 +28,7 @@ export default function Nav({ theme, toggleTheme }) {
           onClick={toggleTheme}
           className="ml-0 rounded-full border border-border bg-bg-card px-3.5 py-1.5 font-mono text-xs text-text transition-colors hover:border-socle hover:text-socle sm:ml-5 sm:text-sm"
         >
-          {theme === "dark" ? "☀️ mode jour" : "🌙 mode nuit"}
+          {theme === "dark" ? "mode jour" : "mode nuit"}
         </button>
       </div>
     </nav>
