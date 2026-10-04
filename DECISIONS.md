@@ -106,3 +106,7 @@ Objectif : rendre la page un peu plus dynamique sans en faire un gadget qui nuit
 - Remplacer le mailto (`j.rigelo@gmail.com`) par un vrai formulaire de contact si souhaité — déjà fonctionnel tel quel
 - Approfondir le responsive mobile (un menu hamburger n'a pas été implémenté — actuellement les liens de nav sont juste masqués sous 640px pour éviter le débordement horizontal constaté)
 - Éventuellement configurer un nom de domaine personnalisé sur Vercel
+
+## Bouton mode jour / nuit (2026-10-04)
+
+Emotes retirées du bouton (Johan ne veut aucune emote sur le site). Remplacé par une **icône SVG seule** (soleil en mode nuit, lune en mode jour = le mode vers lequel on bascule), plutôt que du texte : plus compact, suit la couleur du thème (`currentColor`) et s'affiche pareil sur tous les systèmes, contrairement à une emote. Libellé « Passer en mode jour / nuit » en `aria-label` (lecteurs d'écran) et `title` (survol).
